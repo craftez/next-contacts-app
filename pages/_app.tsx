@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { Provider } from "next-auth/client";
 import { ChakraProvider } from "@chakra-ui/react";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <Provider session={pageProps.session}>
       <ChakraProvider>
@@ -12,4 +12,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Provider>
   );
 }
-export default MyApp;
+export default App;

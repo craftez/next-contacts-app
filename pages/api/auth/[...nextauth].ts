@@ -1,4 +1,3 @@
-import { JWT } from "google-auth-library";
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
