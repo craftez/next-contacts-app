@@ -8,7 +8,6 @@ import SearchBox from "../../components/SearchBox";
 import { ContactType } from "../../helpers/types";
 
 export default function Contacts(props: any) {
-  const [session] = useSession();
   const [selectedContact, setSelectedContact] = useState<ContactType>();
 
   return (
@@ -45,6 +44,13 @@ export async function getServerSideProps(context: any) {
     const options = { headers: { cookie: context.req.headers.cookie } };
     const res = await fetch(`${process.env.VERCEL_URL}/api/contacts`, options);
     const contactsData = await res.json();
+
+    console.log(
+      "___ contacts info: ",
+      session,
+      contactsData,
+      process.env.VERCEL_URL
+    );
 
     if (!session || contactsData.error) {
       return {

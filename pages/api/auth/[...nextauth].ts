@@ -52,6 +52,7 @@ export default NextAuth({
   callbacks: {
     async session(session, token: any) {
       session.id = token.user.id;
+      session.user = token.user;
       console.log("___ session:", session, token);
       return session;
     },
@@ -62,7 +63,7 @@ export default NextAuth({
         return {
           accessToken: account.accessToken,
           accessTokenExpires: Date.now() + account?.expires_in! * 1000,
-          refreshToken: account.refresh_token,
+          refreshToken: account.refreshToken,
           user,
         };
       }
