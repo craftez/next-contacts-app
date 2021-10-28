@@ -1,13 +1,4 @@
-import { Button } from "@chakra-ui/button";
-import {
-  Box,
-  Divider,
-  HStack,
-  List,
-  ListItem,
-  Stack,
-  StackDivider,
-} from "@chakra-ui/layout";
+import { Box, Stack, StackDivider } from "@chakra-ui/layout";
 import { getContactData } from "../helpers/getContactData";
 import type { ContactType, GoogleResourceType } from "../helpers/types";
 import Contact from "./Contact";

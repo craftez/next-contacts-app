@@ -1,6 +1,6 @@
-import { Button, IconButton } from "@chakra-ui/button";
+import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
-import { Box, Center, Flex, Heading } from "@chakra-ui/layout";
+import { Box, Center, Heading } from "@chakra-ui/layout";
 import { signIn } from "next-auth/client";
 import { FcGoogle } from "react-icons/fc";
 

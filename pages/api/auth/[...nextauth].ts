@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import { JWT } from "next-auth/jwt";
 import Providers from "next-auth/providers";
 
 async function refreshAccessToken(token: any) {
@@ -55,7 +54,7 @@ export default NextAuth({
       session.id = token.user.id;
       return session;
     },
-    async jwt(token, user, account, profile, isNewUser) {
+    async jwt(token, user, account) {
       // Initial sign in
       if (account && user) {
         return {

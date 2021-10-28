@@ -4,15 +4,11 @@ import {
   HStack,
   Avatar,
   Text,
-  Stack,
   VStack,
-  Box,
-  Divider,
   SimpleGrid,
   GridItem,
   Heading,
   StackDivider,
-  Textarea,
   IconButton,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
