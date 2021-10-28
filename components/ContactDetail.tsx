@@ -15,12 +15,14 @@ import {
   Textarea,
   IconButton,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import {
   AiFillEdit,
   AiFillMail,
   AiFillPhone,
   AiFillStar,
 } from "react-icons/ai";
+import { Comment } from ".prisma/client";
 import { ContactType } from "../helpers/types";
 import CommentsList from "./CommentsList";
 import NewCommentsForm from "./NewCommentsForm";
@@ -32,12 +34,34 @@ interface ContactDetailProps {
 }
 
 export default function ContactDetail({ contact }: ContactDetailProps) {
+  const [comments, setComments] = useState<Comment[]>([]);
+  async function loadContactComments() {
+    const resourceId = contact?.resourceId!.replace(/people\//g, "");
+    const result = await fetch(`/api/contacts/${resourceId}/comments`);
+    const comments = await result.json();
+    setComments(comments);
+  }
+
+  useEffect(() => {
+    if (contact) {
+      loadContactComments();
+    }
+    return () => {
+      setComments([]);
+    };
+  }, [contact]);
+
   if (!contact)
     return (
       <Center h="calc(100vh - 68px)" py={6}>
         <NoData />
       </Center>
     );
+
+  const handleCommentCreated = (newComment: Comment) => {
+    // handle optimistic updates
+    setComments((currentComments) => [...currentComments, newComment]);
+  };
 
   return (
     <Flex p={{ base: 4, md: 6 }}>
@@ -109,8 +133,8 @@ export default function ContactDetail({ contact }: ContactDetailProps) {
           <Text fontSize="sm" color="gray.500">
             Comments
           </Text>
-          <CommentsList />
-          <NewCommentsForm />
+          <CommentsList comments={comments} />
+          <NewCommentsForm onSuccess={handleCommentCreated} contact={contact} />
         </VStack>
       </VStack>
     </Flex>

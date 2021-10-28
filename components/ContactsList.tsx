@@ -24,7 +24,7 @@ export default function ContactsList({
   activeResourceId,
 }: ContactsListProps) {
   return (
-    <Box pt={12} pb={5} px={4}>
+    <Box pt={28} pb={5} px={4}>
       <Stack spacing={2} divider={<StackDivider m="0 !important" />}>
         {data.map((item: any) => {
           const contact = getContactData(item);
