@@ -42,15 +42,11 @@ export async function getServerSideProps(context: any) {
     const session = await getSession(context);
 
     const options = { headers: { cookie: context.req.headers.cookie } };
-    const res = await fetch(`${process.env.VERCEL_URL}/api/contacts`, options);
-    const contactsData = await res.json();
-
-    console.log(
-      "___ contacts info: ",
-      session,
-      contactsData,
-      process.env.VERCEL_URL
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/contacts`,
+      options
     );
+    const contactsData = await res.json();
 
     if (!session || contactsData.error) {
       return {

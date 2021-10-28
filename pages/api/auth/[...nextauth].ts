@@ -13,6 +13,7 @@ export default NextAuth({
   secret: process.env.APP_SECRET,
   callbacks: {
     async session(session, token: any) {
+      console.log("--", session, token);
       session.id = token.sub;
       return session;
     },

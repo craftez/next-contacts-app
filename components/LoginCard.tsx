@@ -16,7 +16,7 @@ export default function LoginCard() {
           leftIcon={<FcGoogle />}
           onClick={() =>
             signIn("google", {
-              callbackUrl: `${process.env.VERCEL_URL}/contacts`,
+              callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/contacts`,
             })
           }
         >
