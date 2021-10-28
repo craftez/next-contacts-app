@@ -42,12 +42,15 @@ const url = getApiUrl();
 
 export async function getServerSideProps(context: any) {
   try {
+    console.log("contacts loading ...", url);
+
     const session = await getSession(context);
 
     const options = { headers: { cookie: context.req.headers.cookie } };
     const res = await fetch(`${url}/api/contacts`, options);
     const contactsData = await res.json();
 
+    console.log("contacts loading ...", contactsData);
     if (!session || contactsData.error) {
       return {
         redirect: {
