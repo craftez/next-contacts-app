@@ -5,6 +5,7 @@ import ContactDetail from "../../components/ContactDetail";
 import ContactsList from "../../components/ContactsList";
 import Layout from "../../components/Layout";
 import SearchBox from "../../components/SearchBox";
+import { getApiUrl } from "../../helpers/getApiUrl";
 import { ContactType } from "../../helpers/types";
 
 export default function Contacts(props: any) {
@@ -37,15 +38,14 @@ export default function Contacts(props: any) {
   );
 }
 
+const url = getApiUrl();
+
 export async function getServerSideProps(context: any) {
   try {
     const session = await getSession(context);
 
     const options = { headers: { cookie: context.req.headers.cookie } };
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/contacts`,
-      options
-    );
+    const res = await fetch(`${url}/api/contacts`, options);
     const contactsData = await res.json();
 
     if (!session || contactsData.error) {

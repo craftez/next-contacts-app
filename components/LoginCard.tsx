@@ -3,6 +3,9 @@ import { Image } from "@chakra-ui/image";
 import { Box, Center, Heading } from "@chakra-ui/layout";
 import { signIn } from "next-auth/client";
 import { FcGoogle } from "react-icons/fc";
+import { getApiUrl } from "../helpers/getApiUrl";
+
+const url = getApiUrl();
 
 export default function LoginCard() {
   return (
@@ -16,7 +19,7 @@ export default function LoginCard() {
           leftIcon={<FcGoogle />}
           onClick={() =>
             signIn("google", {
-              callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/contacts`,
+              callbackUrl: `${url}/contacts`,
             })
           }
         >
