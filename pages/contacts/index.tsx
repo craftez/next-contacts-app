@@ -42,9 +42,8 @@ export async function getServerSideProps(context: any) {
   try {
     const session = await getSession(context);
 
-    const hostname = "http://localhost:3000";
     const options = { headers: { cookie: context.req.headers.cookie } };
-    const res = await fetch(`${hostname}/api/contacts`, options);
+    const res = await fetch(`${process.env.VERCEL_URL}/api/contacts`, options);
     const contactsData = await res.json();
 
     if (!session || contactsData.error) {
@@ -62,7 +61,7 @@ export async function getServerSideProps(context: any) {
       },
     };
   } catch (error) {
-    console.log("** error", error);
+    console.log("¯_(ツ)_/¯", error);
     return {
       redirect: {
         destination: "/",

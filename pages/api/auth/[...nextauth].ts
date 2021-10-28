@@ -31,7 +31,7 @@ async function refreshAccessToken(token: any) {
       refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, // Fallback to old refresh tokens
     };
   } catch (error) {
-    console.log(error);
+    console.log("¯_(ツ)_/¯", error);
 
     return {
       ...token,
