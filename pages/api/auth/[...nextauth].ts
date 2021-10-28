@@ -52,9 +52,11 @@ export default NextAuth({
   callbacks: {
     async session(session, token: any) {
       session.id = token.user.id;
+      console.log("___ session:", session, token);
       return session;
     },
     async jwt(token, user, account) {
+      console.log("___ jwt:", token, user, account);
       // Initial sign in
       if (account && user) {
         return {
