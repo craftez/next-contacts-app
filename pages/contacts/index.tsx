@@ -41,6 +41,7 @@ export default function Contacts(props: any) {
 const url = getApiUrl();
 
 export async function getServerSideProps(context: any) {
+  console.log("getServerSideProps contacts");
   try {
     console.log("contacts loading ...", url);
 
