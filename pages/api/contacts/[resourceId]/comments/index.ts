@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/client";
 
 const prisma = new PrismaClient();
-// const secret = process.env.APP_SECRET;
+const secret = process.env.APP_SECRET;
 
 export default async function getAllContactComments(req: any, res: any) {
   try {

@@ -7,14 +7,18 @@ const auth = new google.auth.OAuth2(
 
 export const Google = {
   async getUserContacts(accessToken: string) {
-    auth.setCredentials({ access_token: accessToken });
-    const { data } = await google
-      .people({ version: "v1", auth })
-      .people.connections.list({
-        resourceName: "people/me",
-        personFields: "emailAddresses,names,photos,phoneNumbers",
-      });
+    try {
+      auth.setCredentials({ access_token: accessToken });
+      const { data } = await google
+        .people({ version: "v1", auth })
+        .people.connections.list({
+          resourceName: "people/me",
+          personFields: "emailAddresses,names,photos,phoneNumbers",
+        });
 
-    return { contacts: data.connections, total: data.totalPeople };
+      return { contacts: data.connections, total: data.totalPeople };
+    } catch (error) {
+      throw error;
+    }
   },
 };
