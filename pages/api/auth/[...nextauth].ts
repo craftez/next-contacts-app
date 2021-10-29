@@ -10,7 +10,7 @@ export default NextAuth({
         "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/contacts",
     }),
   ],
-  secret: process.env.APP_SECRET,
+  // secret: process.env.APP_SECRET,
   callbacks: {
     async session(session, token: any) {
       session.id = token.sub;
